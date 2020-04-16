@@ -17,21 +17,21 @@ def provide_recs(bmi):
         page = requests.get('https://www.healthline.com/nutrition/18-foods-to-gain-weight')
         soup = BeautifulSoup(page.content, 'lxml')
         match = soup.find('div', class_='__chrome').find('div', id = '__next').find_all('h2')
-        # file = open('testfile.txt', 'w')
-        # file.write(str(match))
         for elem in match:
             if elem.div:
                 if str.isdigit(elem.div.a.text[0]):
-                    print(elem.div.a.text)
+                    print(''.join([i for i in elem.div.a.text if not i.isdigit()])[2:] )
     elif(18.5 <= bmi < 25):
         print('Healthy Weight')
     else:
-        page = requests.get('https://www.eatthis.com/healthy-weight-loss-foods/')
+        page = requests.get('https://www.healthline.com/nutrition/20-most-weight-loss-friendly-foods')
         soup = BeautifulSoup(page.content,'lxml')
-        # match = soup.find('div', class_ = 'main-content').find('div', class_='content').find('div', class_='number-head-mod number-head-mod-standalone').find('div', class_='header-mod').h2.text
-        match = soup.find('div', class_ = 'main-content').find('div', class_='content').find_all('h2', class_='title')
+        match = soup.find('div', class_='__chrome').find('div', id = '__next').find_all('h2')
         for elem in match:
-            print(elem.text)
+             if elem.div:
+                if str.isdigit(elem.div.a.text[0]):
+                    # print(''.join([i for i in elem.div.a.text if not i.isdigit())])
+                    print(''.join([i for i in elem.div.a.text if not i.isdigit()])[2:] )
 
 
-provide_recs(14)
+provide_recs(15)
