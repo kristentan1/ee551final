@@ -7,13 +7,39 @@ inches = 6
 weight = 140
 
 def calculate_bmi(measurements):
-    feet = int(measurements[0])
-    inches = int(measurements[1])
-    weight = int(measurements[2])
-    total_height_meters =((feet * 12) + inches) * 0.0254
-    weight_kilograms = weight * 0.45359237
+    valid_feet = True 
+    valid_inches = True
+    valid_weight = True
+
+    try:
+        feet = int(measurements[0])
+    except:
+        valid_feet = False
+    try:
+        inches = int(measurements[1])
+    except:
+        valid_inches = False
+    try:
+        weight = int(measurements[2])
+    except:
+        valid_weight = False
     # return round((weight_kilograms / (total_height_meters**2)), 1)
-    print(round((weight_kilograms / (total_height_meters**2)), 1))
+    
+    label_text = ''
+    if (not valid_feet) or (not valid_inches) or (not valid_weight):
+        if not valid_feet:
+            label_text += 'Feet invalid.'
+        if not valid_inches:
+            label_text += ' Inches invalid.'
+        if not valid_weight:
+            label_text += ' Weight invalid.'
+        label['text'] = label_text + ' Verify that all inputs are numerical.'
+    else:
+        total_height_meters =((feet * 12) + inches) * 0.0254
+        weight_kilograms = weight * 0.45359237
+        label['text'] = str(round((weight_kilograms / (total_height_meters**2)), 1))
+
+
 
 # temp_bmi = calculate_bmi(feet, inches, weight)
 
