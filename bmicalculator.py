@@ -70,8 +70,11 @@ root.title("BMI Calculator")
 canvas = tk.Canvas(root, height=HEIGHT, width=WIDTH)
 canvas.pack()
 
+info_label = tk.Label(root, text='Welcome to BMI Calculator! Enter your height and weight to compute your BMI and get recommendations.', font=('Arial', 9))
+info_label.place(relx=0.025, rely=0.015)
+
 frame = tk.Frame(root, bg='#80c1ff', bd=5)
-frame.place(relx=0.5, rely=0.05, relwidth=0.75, relheight=0.2, anchor='n')
+frame.place(relx=0.5, rely=0.075, relwidth=0.75, relheight=0.2, anchor='n')
 
 # feet_entry = tk.Entry(frame, font=('Courier', 18),borderwidth=2)
 # feet_entry.place(relx=0, rely=0, relwidth=0.3, relheight=0.45)
