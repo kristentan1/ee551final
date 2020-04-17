@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from tkinter import font
 import tkinter as tk
 
 feet = 5
@@ -30,10 +31,10 @@ def calculate_bmi(measurements):
         if not valid_feet:
             label_text += 'Feet invalid.'
         if not valid_inches:
-            label_text += ' Inches invalid.'
+            label_text += '\nInches invalid.'
         if not valid_weight:
-            label_text += ' Weight invalid.'
-        label['text'] = label_text + ' Verify that all inputs are numerical.'
+            label_text += '\nWeight invalid.'
+        label['text'] = label_text + '\nPlease verify that all inputs are numerical.'
     else:
         total_height_meters =((feet * 12) + inches) * 0.0254
         weight_kilograms = weight * 0.45359237
@@ -81,22 +82,22 @@ canvas.pack()
 frame = tk.Frame(root, bg='#80c1ff', bd=5)
 frame.place(relx=0.5, rely=0.05, relwidth=0.75, relheight=0.2, anchor='n')
 
-feet_entry = tk.Entry(frame, font=40,borderwidth=2)
+feet_entry = tk.Entry(frame, font=('Courier', 18),borderwidth=2)
 feet_entry.place(relx=0, rely=0, relwidth=0.3, relheight=0.45)
 
-inches_entry = tk.Entry(frame, font=40,borderwidth=2)
+inches_entry = tk.Entry(frame, font=('Courier', 18),borderwidth=2)
 inches_entry.place(relx=0.35, rely=0, relwidth=0.3, relheight=0.45)
 
-weight_entry = tk.Entry(frame, font=40, borderwidth=2)
+weight_entry = tk.Entry(frame, font=('Courier', 18), borderwidth=2)
 weight_entry.place(rely=0.5, relwidth=0.65, relheight=0.45)
 
-button = tk.Button(frame, text='Calculate', font=40, command=lambda: calculate_bmi([feet_entry.get(), inches_entry.get(), weight_entry.get()]))
+button = tk.Button(frame, text='Calculate', font=('Courier', 12), command=lambda: calculate_bmi([feet_entry.get(), inches_entry.get(), weight_entry.get()]))
 button.place(relx=0.7, rely=0.2, relwidth=0.3, relheight=0.6)
 
 lower_frame = tk.Frame(root, bg='#80c1ff', bd=10)
 lower_frame.place(relx=0.5, rely=0.3, relwidth = 0.75, relheight=0.65, anchor='n')
 
-label = tk.Label(lower_frame)
+label = tk.Label(lower_frame, font=('Courier', 18))
 label.place(relwidth=1, relheight=1)
 
 root.mainloop()
