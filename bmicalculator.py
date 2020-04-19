@@ -44,29 +44,36 @@ def calculate_bmi(measurements):
         print((round((weight_kilograms / (total_height_meters**2)), 1)))
         return (round((weight_kilograms / (total_height_meters**2)), 1))
 
+def request_and_find(url):
+    page = requests.get(url)
+    soup = BeautifulSoup(page.content,'lxml')
+    match = soup.find('div', class_='__chrome').find('div', id = '__next').find_all('div', class_='css-ps3vwz')
+    headlines_string = ''
+    for elem in match:
+        headlines_string += '\n ' + elem.find('h2').text
+    return headlines_string
+
+
 def provide_recs(measurements):
     result_bmi = calculate_bmi(measurements)
     if (result_bmi < 18.5):
-        page = requests.get('https://www.healthline.com/nutrition/18-foods-to-gain-weight')
-        soup = BeautifulSoup(page.content, 'lxml')
-        match = soup.find('div', class_='__chrome').find('div', id = '__next').find_all('h2')
-        for elem in match:
-            if elem.div:
-                if str.isdigit(elem.div.a.text[0]):
-                    print(''.join([i for i in elem.div.a.text if not i.isdigit()])[2:] )
+        headlines_string= request_and_find('https://www.medicalnewstoday.com/categories/eating-disorders')
+        label['text'] = 'BMI: ' + str(result_bmi) + '\n' + headlines_string
+        button = tk.Button(label, text='Go to Medical News Today', font=('Arial', 12))
+        button.place(relx=0.45, rely=0.9)
+        # soup = BeautifulSoup(page.content, 'lxml')
+        # match = soup.find('div', class_='__chrome').find('div', id = '__next').find_all('h2')
+        # for elem in match:
+        #     if elem.div:
+        #         if str.isdigit(elem.div.a.text[0]):
+        #             print(''.join([i for i in elem.div.a.text if not i.isdigit()])[2:] )
     elif(18.5 <= result_bmi < 25):
         label['text'] = 'BMI: ' + str(result_bmi) + '\n Your BMI is healthy!'
     else:
-        page = requests.get('https://www.medicalnewstoday.com/categories/fitness-obesity')
-        soup = BeautifulSoup(page.content,'lxml')
-        match = soup.find('div', class_='__chrome').find('div', id = '__next').find_all('div', class_='css-ps3vwz')
-        headlines_string = ''
-        for elem in match:
-            headlines_string += '\n ' + elem.find('h2').text
+        headlines_string= request_and_find('https://www.medicalnewstoday.com/categories/fitness-obesity')
         label['text'] = 'BMI: ' + str(result_bmi) + '\n' + headlines_string
-        button = tk.Button(label, text='GO HERE', font=('Arial', 12))
-        # button.place(relx=0.45, rely=0.9)
-        button.place(relwidth=0.1, relheight=0.1)
+        button = tk.Button(label, text='Go to Medical News Today', font=('Arial', 12))
+        button.place(relx=0.45, rely=0.9)
 
 # Display
 root = tk.Tk('')
