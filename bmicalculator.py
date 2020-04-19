@@ -54,14 +54,14 @@ def provide_recs(bmi):
     elif(18.5 <= bmi < 25):
         print('Healthy Weight')
     else:
-        page = requests.get('https://www.healthline.com/nutrition/20-most-weight-loss-friendly-foods')
+        page = requests.get('https://www.medicalnewstoday.com/categories/fitness-obesity')
         soup = BeautifulSoup(page.content,'lxml')
-        match = soup.find('div', class_='__chrome').find('div', id = '__next').find_all('h2')
+        match = soup.find('div', class_='__chrome').find('div', id = '__next').find_all('a', class_='css-1yj1mm0')
+        match = soup.find('div', class_='__chrome').find('div', id = '__next').find_all('div', class_='css-ps3vwz')
         for elem in match:
-             if elem.div:
-                if str.isdigit(elem.div.a.text[0]):
-                    # print(''.join([i for i in elem.div.a.text if not i.isdigit())])
-                    print(''.join([i for i in elem.div.a.text if not i.isdigit()])[2:] )
+            print(elem.find('h2').text)
+            print(elem.find('a', class_='css-2fdibo').text)
+            print('')
 
 # Display
 root = tk.Tk('')
@@ -71,7 +71,7 @@ canvas = tk.Canvas(root, height=HEIGHT, width=WIDTH)
 canvas.pack()
 
 info_label = tk.Label(root, text='Welcome to BMI Calculator! Enter your height and weight to compute your BMI and get recommendations.', font=('Arial', 9))
-info_label.place(relx=0.025, rely=0.015)
+info_label.place(relx=0.3, rely=0.015)
 
 frame = tk.Frame(root, bg='#80c1ff', bd=5)
 frame.place(relx=0.5, rely=0.075, relwidth=0.75, relheight=0.2, anchor='n')
@@ -97,4 +97,6 @@ lower_frame.place(relx=0.5, rely=0.3, relwidth = 0.75, relheight=0.65, anchor='n
 label = tk.Label(lower_frame, font=('Arial', 12))
 label.place(relwidth=1, relheight=1)
 
-root.mainloop()
+# root.mainloop()
+
+provide_recs(27)
