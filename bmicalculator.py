@@ -30,7 +30,6 @@ def calculate_bmi(measurements):
         weight = int(measurements[2])
     except:
         valid_weight = False
-    # return round((weight_kilograms / (total_height_meters**2)), 1)
     
     label_text = ''
     if (not valid_feet) or (not valid_inches) or (not valid_weight):
@@ -44,8 +43,6 @@ def calculate_bmi(measurements):
     else:
         total_height_meters =((feet * 12) + inches) * 0.0254
         weight_kilograms = weight * 0.45359237
-        # label['text'] = str(round((weight_kilograms / (total_height_meters**2)), 1))
-        print((round((weight_kilograms / (total_height_meters**2)), 1)))
         return (round((weight_kilograms / (total_height_meters**2)), 1))
 
 def request_and_find(url):
@@ -77,8 +74,6 @@ def provide_recs(measurements):
     else:
         headlines_string= request_and_find('https://www.medicalnewstoday.com/categories/fitness-obesity')
         label['text'] = 'BMI: ' + str(result_bmi) + '\n' + 'BMIs greater than 24.9 suggest you may be overweight. The headlines below display recent articles related to potential conditions.''\n' + headlines_string
-        # button = tk.Button(label, text='Go to Medical News Today', font=('Arial', 12), command=(open_link('https://www.medicalnewstoday.com/categories/fitness-obesity')))
-        # button.place(relx=0.425, rely=0.9)
         overweight_link = tk.Label(label, text="Go to Medical News Today", fg='blue', cursor='hand2')
         overweight_link.place(relx=0.425, rely=0.9)
         overweight_link.bind('<Button-1>', lambda e: open_link('https://www.medicalnewstoday.com/categories/fitness-obesity'))
@@ -95,11 +90,7 @@ info_label = tk.Label(root, text='Welcome to BMI Calculator! Enter your height a
 info_label.place(relx=0.2, rely=0.015)
 
 frame = tk.Frame(root, bg='#80c1ff', bd=5)
-# frame.place(relx=0.5, rely=0.075, relwidth=0.75, relheight=0.2, anchor='n')
 frame.place(relx=0.5, rely=0.1, relwidth=0.75, relheight=0.2, anchor='n')
-
-# feet_entry = tk.Entry(frame, font=('Courier', 18),borderwidth=2)
-# feet_entry.place(relx=0, rely=0, relwidth=0.3, relheight=0.45)
 
 feet_entry = customentry.CustomEntry(frame, 'Feet')
 feet_entry.place(relx=0, rely=0, relwidth=0.3, relheight=0.45)
@@ -120,5 +111,3 @@ label = tk.Label(lower_frame, font=('Arial', 12))
 label.place(relwidth=1, relheight=1)
 
 root.mainloop()
-
-# provide_recs(27)
