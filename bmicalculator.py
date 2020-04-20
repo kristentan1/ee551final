@@ -82,6 +82,7 @@ def provide_recs(measurements):
 # Display
 root = tk.Tk('')
 root.title("BMI Calculator")
+root.resizable(False, False)
 
 canvas = tk.Canvas(root, height=HEIGHT, width=WIDTH)
 canvas.pack()
