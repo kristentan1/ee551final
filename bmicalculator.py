@@ -88,7 +88,7 @@ canvas = tk.Canvas(root, height=HEIGHT, width=WIDTH)
 canvas.pack()
 
 info_label = tk.Label(root, text='Welcome to BMI Calculator! Enter your height and weight below to compute your BMI and learn more.', font=('Arial', 16))
-info_label.place(relx=0.2, rely=0.015)
+info_label.place(relx=0.185, rely=0.015)
 
 frame = tk.Frame(root, bg='#80c1ff', bd=5)
 frame.place(relx=0.5, rely=0.1, relwidth=0.75, relheight=0.2, anchor='n')
