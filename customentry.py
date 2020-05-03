@@ -1,3 +1,5 @@
+# Reference: https://stackoverflow.com/a/47928390
+
 import tkinter as tk
 
 class CustomEntry(tk.Entry):
