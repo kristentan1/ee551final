@@ -1,4 +1,4 @@
-# Reference: https://stackoverflow.com/a/47928390
+# Stack Overflow Reference: https://stackoverflow.com/a/47928390 by Nae (https://stackoverflow.com/users/7032856/nae)
 
 import tkinter as tk
 
