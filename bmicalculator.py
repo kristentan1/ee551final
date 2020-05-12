@@ -15,15 +15,15 @@ def calculate_bmi(measurements):
     valid_weight = True
 
     try:
-        feet = int(measurements[0])
+        feet = float(measurements[0])
     except:
         valid_feet = False
     try:
-        inches = int(measurements[1])
+        inches = float(measurements[1])
     except:
         valid_inches = False
     try:
-        weight = int(measurements[2])
+        weight = float(measurements[2])
     except:
         valid_weight = False
     
