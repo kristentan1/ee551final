@@ -8,10 +8,6 @@ from bs4 import BeautifulSoup
 import customentry
 
 
-# Constants
-HEIGHT = 750
-WIDTH = 1500
-
 # Utility Functions
 def calculate_bmi(measurements):
     valid_feet = True 
@@ -81,10 +77,14 @@ def provide_recs(measurements):
 
 # Display
 root = tk.Tk('')
+# Constants
+win_height = root.winfo_screenheight()
+win_width = root.winfo_screenwidth()
+# root.attributes('-fullscreen', True)
 root.title("BMI Calculator")
 root.resizable(False, False)
 
-canvas = tk.Canvas(root, height=HEIGHT, width=WIDTH)
+canvas = tk.Canvas(root, height=win_height, width=win_width)
 canvas.pack()
 
 info_label = tk.Label(root, text='Welcome to BMI Calculator! Enter your height and weight below to compute your BMI and learn more.', font=('Arial', 16))
